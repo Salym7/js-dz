@@ -1,18 +1,27 @@
 'use strict';
 
-
+const operator = prompt('Введите один из операций (add, sub, mult, div)');
 const num1 = +prompt('Введите первое число');
 const num2 = +prompt('Введите второе число');
+let op
+let res
+if (operator == 'add' || operator == '+') {
+    res = num1 + num2
+    op = '+'
+} else if (operator == 'sub' || operator == '-') {
+    res = num1 - num2
+    op = '-'
+} else if (operator == 'mult' || operator == '*') {
+    res = num1 * num2
+    op = '*'
+} else if (operator == 'div' || operator == '/') {
+    res = num1 / num2
+    op = '/'
+} else {
+    alert('Не правильно введенная операция')
+}
+alert(`Результат: ${num1}${op}${num2}=${res}`)
 
-const add = num1 + num2
-const sub = num1 - num2
-const mult = num1 * num2
-const div = num1 / num2
-
-console.log(`Результат: ${num1}+${num2}=${add}`)
-console.log(`Результат: ${num1}-${num2}=${sub}`)
-console.log(`Результат: ${num1}*${num2}=${mult}`)
-console.log(`Результат: ${num1}/${num2}=${div}`)
 
 
 
