@@ -8,14 +8,10 @@ const sub = num1 - num2
 const mult = num1 * num2
 const div = num1 / num2
 
-console.log(`Результат: ${num1}+${num2}=${add}`)
-console.log(`Результат: ${num1}-${num2}=${sub}`)
-console.log(`Результат: ${num1}*${num2}=${mult}`)
-console.log(`Результат: ${num1}/${num2}=${div}`)
-
-
-
-
+console.log('Результат:', num1, '+', num2, '=', add)
+console.log('Результат:', num1, '-', num2, '=', sub)
+console.log('Результат:', num1, '*', num2, '=', mult)
+console.log('Результат:', num1, '/', num2, '=', div)
 
 
 

@@ -5,22 +5,22 @@ const num1 = +prompt('Введите первое число');
 const num2 = +prompt('Введите второе число');
 let op
 let res
-if (operator == 'add' || operator == '+') {
+if (operator === 'add' || operator === '+') {
     res = num1 + num2
     op = '+'
-} else if (operator == 'sub' || operator == '-') {
+} else if (operator === 'sub' || operator === '-') {
     res = num1 - num2
     op = '-'
-} else if (operator == 'mult' || operator == '*') {
+} else if (operator === 'mult' || operator === '*') {
     res = num1 * num2
     op = '*'
-} else if (operator == 'div' || operator == '/') {
+} else if (operator === 'div' || operator === '/') {
     res = num1 / num2
     op = '/'
 } else {
     alert('Не правильно введенная операция')
 }
-alert(`Результат: ${num1}${op}${num2}=${res}`)
+console.log('Результат:', num1, op, num2, '=', res)
 
 
 
