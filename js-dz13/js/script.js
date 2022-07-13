@@ -18,26 +18,25 @@
 
 // const num2 = prompt('Введите целое число')
 //
-// const long = num2.length
 // const sign = Math.sign(+num2)
-// let descrip
+// let descrip = null
 //
 // if (sign === -1 || sign === -0) {
-//     descrip =  'Число ' + num2 + ' однозначно отрицательное' ;
+//     descrip = 'Число ' + num2 + ' однозначно отрицательное';
 // } else if (sign === 1 || sign === 0) {
 //     descrip = 'Число ' + num2 + ' однозначно положительное';
 // } else {
 //     descrip = 'Число введено не правильно'
 // }
 //
-// alert('В числе ' + num2 + ' '+ num2.length + ' цифр ' + '\n' + descrip);
+// alert('В числе ' + num2 + ' ' + num2.length + ' цифр ' + '\n' + descrip);
 
 // Task #4
 
-// const firstNumber = prompt('Введите первое число')
-// const secondNumber = prompt('Введите второе число')
-// const thirdNumber = prompt('Введите третье число')
-//
+// const firstNumber = +prompt('Введите первое число')
+// const secondNumber = +prompt('Введите второе число')
+// const thirdNumber = +prompt('Введите третье число')
+
 // if (firstNumber > secondNumber && firstNumber > thirdNumber) {
 //     alert('Первое число ' + firstNumber + ' самое большое число')
 // } else if (secondNumber > thirdNumber) {
