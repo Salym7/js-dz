@@ -1,6 +1,6 @@
 'use strict';
 
-let num = +prompt('Введите простое число', '');
+const num = +prompt('Введите простое число', '');
 let flag = true;
 
 if (!num) {
