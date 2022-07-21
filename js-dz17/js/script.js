@@ -3,11 +3,10 @@
 const num = +prompt('Введите число');
 const expo = +prompt('Введите степень');
 
-function pow(a, b = 1) {
+const pow = (a, b = 1) => {
 
-    if (isNaN(a) || isNaN(b)) {
-        return 'some error';
-    }
+    if (!num || isNaN(a)) return 'Введите число правильно!!!';
+    if (!expo || isNaN(b)) return 'Введите степень правильно!!!';
     return Math.pow(a, b);
 }
 
