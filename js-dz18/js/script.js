@@ -1,22 +1,27 @@
 'use strict';
 
-const String = prompt('Введите строку')
-const Num = +prompt('Введите длину строки')
-const Symbol = prompt('Введите символ например *')
-const Boolean = prompt('Enter true or false')
+const padString = (
+    initialString,
+    estimatedLength,
+    symbol = '*',
+    right = true
+) => {
+    if (typeof initialString !== 'string') throw new Error('initialString is not in type String');
+    if (typeof estimatedLength !== 'number') throw new Error('estimatedLength is not in type Number');
 
-function padString(justString, justNum, justSymbol = '*', justBoolean = 'true') {
-    let result = null
-    if (justString === undefined) return 'Not find string'
-    if (justNum === null || justNum === '' || isNaN(justNum)) return 'Not find Num'
-    if (justSymbol.length >= 2) return 'Enter one symbol'
-    // if (justBoolean === null || justBoolean === '') return 'Enter true or false'
-    if (justBoolean === 'true') result = justString + justSymbol
-    if (justBoolean === 'false') result = justSymbol + justString
-    result = result.substring(0, justNum);
+    if (initialString.length === estimatedLength) return initialString;
+    if (initialString.length > estimatedLength) return initialString.substring(0, estimatedLength);
 
-    return result
+    if (typeof symbol !== 'string') throw new Error('symbol is not in type String');
+    if (symbol.length > 1) throw new Error('symbol length is too long');
 
+    if (typeof right !== 'boolean') throw new Error('side length is too Boolean');
+
+    const symbols = symbol.repeat(estimatedLength - initialString.length);
+
+    return right ? initialString + symbols : symbols + initialString;
 }
 
-console.log(padString(String, Num, Symbol, Boolean))
+console.log(
+    padString('hello', 10, '/', false)
+);
