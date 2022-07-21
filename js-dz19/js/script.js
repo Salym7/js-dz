@@ -2,18 +2,30 @@
 
 const arr = [1, 2, 3, -1, -2, -3];
 
-function arrFunction(anyArr) {
-    const exampleArr = []
-    let index
-    if (anyArr.length === 0) return console.log('This array empty');
+const getPositiveNumbersArray = initialArray => {
+    const defaultResult = [];
 
-    for (index = 0; index < anyArr.length; ++index) {
-        if (Math.sign(anyArr[index]) === 1 || Math.sign(anyArr[index]) === 0) exampleArr.push(anyArr[index])
+    if( !Array.isArray(initialArray) || !initialArray.length ) return defaultResult;
+
+    const positiveNumbersArray = [];
+
+    for(let i = 0; i < initialArray.length; i += 1) {
+
+        if(typeof initialArray[i] !== 'number') continue;
+        if(isNaN(initialArray[i])) continue;
+
+        if( initialArray[i] > 0 ) {
+            positiveNumbersArray.push(initialArray[i])
+        }
+
     }
-    console.log(exampleArr)
-    if (exampleArr.length === 0) return null
 
-    return exampleArr
+    return positiveNumbersArray.length > 0 ? positiveNumbersArray : defaultResult;
 }
 
-arrFunction(arr)
+
+const positiveNumbersArray = getPositiveNumbersArray(arr)
+
+console.log(positiveNumbersArray)
+
+
