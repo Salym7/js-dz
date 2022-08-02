@@ -115,6 +115,6 @@
 // console.log(arr)
 
 // Task#20
-let arr = [5, -3, 6, -5, 0, -7, 8, 9];
-let result = arr.reduce((sum, current) => current < 0 ? sum += 1 : sum, 0);
-console.log(result)
+// let arr = [5, -3, 6, -5, 0, -7, 8, 9];
+// let result = arr.reduce((sum, current) => current < 0 ? sum += 1 : sum, 0);
+// console.log(result)
