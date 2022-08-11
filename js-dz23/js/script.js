@@ -23,11 +23,11 @@
 
 // Task#5
 // const arr = ['js', 'css', 'jq']
-// console.log(arr[0])
+// console.log(arr.shift())
 
 // Task#6
 // const arr = ['js', 'css', 'jq']
-// console.log(arr[arr.length - 1])
+// console.log(arr.pop())
 
 // Task#7
 // const arr = [1, 2, 3, 4, 5]
