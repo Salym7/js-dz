@@ -1,8 +1,8 @@
 'use strict';
 
-const getAdder = function () {
+const getAdder = () => {
     let res = 0;
-    return function (x) {
+    return (x) => {
         res += x;
         return res;
     }
