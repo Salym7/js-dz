@@ -28,9 +28,7 @@ const findFunction = (array, callback) => {
 
 }
 console.log(
-    findFunction(arr, (item) => {
-        return item > 1;
-    })
+    findFunction(arr, (item) => item > 1)
 );
 
 
@@ -41,9 +39,7 @@ const findIndexFunction = (array, callback) => {
     return -1;
 };
 console.log(
-    findIndexFunction(arr, (item) => {
-        return item > 3;
-    })
+    findIndexFunction(arr, (item) => item > 3)
 );
 
 
@@ -63,9 +59,7 @@ const everyFunction = (array, callback) => {
     return true;
 };
 console.log(
-    everyFunction(arr, (item) => {
-        return item > 2;
-    })
+    everyFunction(arr, (item) => item > 2)
 );
 
 
@@ -76,7 +70,5 @@ const someFunction = (array, callback) => {
     return false;
 };
 console.log(
-    someFunction(arr, (item) => {
-        return item > 5;
-    })
+    someFunction(arr, (item) => item > 5)
 );
