@@ -6,9 +6,8 @@ const func = str => {
     if (result === revStr(result)) return result;
     return func(result)
 }
-const revStr = str => {
-    return str.split("").reverse().join("");
-}
+const revStr = str => str.split("").reverse().join("");
 
-console.log(func('76'));
+
+console.log(func('49'));
 
