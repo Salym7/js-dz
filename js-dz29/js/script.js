@@ -1,6 +1,6 @@
 'use strict';
 const makeArray = (max) => {
-    let arr = []
+    const arr = []
     for (let i = 1; i <= max; i++) {
         arr.push(i)
     }
@@ -18,9 +18,5 @@ console.log(random());
 console.log(random());
 console.log(random());
 
-// for (let i = 0; i < 100; i++) {
-//     console.log(random());
-// }
-//
 
 
