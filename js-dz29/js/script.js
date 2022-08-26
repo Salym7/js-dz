@@ -1,22 +1,20 @@
 'use strict';
-const makeArray = (max) => {
-    const arr = []
-    for (let i = 1; i <= max; i++) {
-        arr.push(i)
+
+(() => {
+    let makeArray = (max) => {
+        let arr = [];
+        const getRandomNumber = () => {
+            if (arr.length === max) return arr;
+            let num = Math.floor(Math.random() * max + 1);
+            arr.includes(num) ? getRandomNumber() : arr.push(num);
+            return arr;
+        }
+        return getRandomNumber;
     }
-
-    function getRandomNumber() {
-        return arr.splice(Math.floor(Math.random() * arr.length), 1)[0];
-    }
-
-    return getRandomNumber;
-}
-
-const random = makeArray(100)
-console.log(random());
-console.log(random());
-console.log(random());
-console.log(random());
-
-
+    let generateNum = makeArray(100);
+    generateNum();
+    generateNum();
+    generateNum();
+    console.log(generateNum());
+})();
 
