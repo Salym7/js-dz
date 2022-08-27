@@ -9,10 +9,3 @@
     console.log(showList.length);
     console.log(arrayLi);
 })();
-
-
-
-
-
-
-
