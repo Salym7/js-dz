@@ -11,7 +11,6 @@
                 childElement = generateList(el);
             } else {
                 childElement = document.createTextNode(el)
-                childElement.innerHTML = el
             }
             li.appendChild(childElement);
             ul.appendChild(li);
