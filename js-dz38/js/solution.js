@@ -6,19 +6,19 @@
 
         array.forEach((el) => {
             const li = document.createElement('li');
-            let childElement
+            let childElement = null;
             if (Array.isArray(el)) {
                 childElement = generateList(el);
             } else {
-                childElement = document.createTextNode(el)
+                childElement = document.createTextNode(el);
             }
             li.appendChild(childElement);
             ul.appendChild(li);
         })
 
-        return document.body.appendChild(ul)
+        return document.body.appendChild(ul);
 
-    }
+    };
 
     generateList([1, 2, 3])
     generateList([1, 2, [1.1, 1.2, 1.3], 3])
