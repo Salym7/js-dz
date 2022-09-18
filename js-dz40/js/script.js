@@ -13,10 +13,14 @@
 
                 const formData = {}
                 for (const input of inputs) {
-                    const {name, value} = input
-                    formData[name] = value
+                    const {name, value, checked} = input
+                    if (checked) {
+                        formData[name] = checked
+                    } else {
+                        formData[name] = value
+                    }
                 }
-                localStorage.setItem('formData', JSON.stringify(formData) )
+                localStorage.setItem('formData', JSON.stringify(formData))
                 setTimeout(() => {
                     window.location.href = 'solutions.html'
                 }, 2000);
