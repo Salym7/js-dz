@@ -7,7 +7,7 @@
     const form = document.querySelector('#todoForm');
     const todoItems = document.querySelector('#todoItems');
 
-    if (localStorage.getItem(dataKey) && JSON.parse(localStorage.getItem(dataKey)).length){
+    if (localStorage.getItem(dataKey) && JSON.parse(localStorage.getItem(dataKey)).length) {
         const data = JSON.parse(localStorage.getItem(dataKey));
         id = data[data.length - 1].id;
     }
@@ -15,13 +15,13 @@
     const renderItem = (todoItem) => {
         const wrapper = document.createElement('div');
         wrapper.classList.add('col-4');
-        wrapper.setAttribute('data-id', todoItem.title);
+        wrapper.setAttribute('data-id', todoItem.id);
 
-        wrapper.innerHTML = `
+       wrapper.innerHTML = `
                <div class="taskWrapper" >
                    <div class="taskHeading">${todoItem.title}</div>
                    <div class="taskDescription">${todoItem.description}</div>
-               </div>`;
+               </div>`
 
         todoItems.prepend(wrapper);
     };
@@ -62,16 +62,18 @@
         data.forEach(item => renderItem(item))
     })
 
-    todoItems.addEventListener('click', e=>{
+    todoItems.addEventListener('click', e => {
         e.stopPropagation()
 
-        const currentItem = e.target.closest('[data-id]')
+        const currentItem = e.target.closest('[data-id]');
         const currentItemId = Number(currentItem.getAttribute('data-id'));
+        console.log(currentItem);
 
         const filteredData = JSON
             .parse(localStorage.getItem(dataKey))
-            .filter(item=> item.id !== currentItemId)
+            .filter(item => item.id !== currentItemId);
 
+        console.log(filteredData);
         localStorage.setItem(dataKey, JSON.stringify(filteredData));
         currentItem.remove();
     })
