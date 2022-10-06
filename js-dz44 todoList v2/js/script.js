@@ -93,7 +93,6 @@ const toDoList = {
                 .parse(localStorage.getItem(this.selector))
                 .filter(item => item.id !== currentItemId);
 
-            console.log(filteredData);
             localStorage.setItem(this.selector, JSON.stringify(filteredData));
             currentItem.remove();
         })
