@@ -88,7 +88,6 @@ const toDoList = {
 
             const currentItem = e.target.closest('[data-id]');
             const currentItemId = Number(currentItem.getAttribute('data-id'));
-            console.log(currentItem);
 
             const filteredData = JSON
                 .parse(localStorage.getItem(this.selector))
