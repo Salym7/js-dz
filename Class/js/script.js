@@ -2,80 +2,134 @@
 
 (function () {
 
-    function Student(firstName, lastName, birthday) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.years = (new Date()).getFullYear() - birthday;
-        this.attendance = ['', '', '', '', '', '', '', '', '', ''];
-        this.assessment = ['', '', '', '', '', '', '', '', '', ''];
+    class Human {
+        _firstName = null;
+        _lastName = null;
+        _years = null;
+        #weight = null;
+        static genus = 'human';
+
+        constructor(firstName, lastName, birthday, weight = 40) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.years = birthday;
+            this.weight = weight
+        }
+
+        static getDate() {
+            return new Date();
+        }
+
+        fullName() {
+            return this.firstName + ' ' + this.lastName;
+        }
+
+        get firstName() {
+            return this._firstName;
+        }
+
+        set firstName(value) {
+            if (value.length < 4) throw new Error("Имя слишком короткое");
+            this._firstName = value
+        }
+
+        get lastName() {
+            return this._lastName
+        }
+
+        set lastName(value) {
+            if (value.length < 4) throw new Error("Фамилия слишком короткое");
+            this._lastName = value
+        }
+
+        get years() {
+            return this._years
+        }
+
+        set years(value) {
+            if (new Date().getFullYear() < value) throw new Error("Такой год еще не настал");
+            this._years = new Date().getFullYear() - value
+        }
+
+        get weight() {
+            return this.#weight
+        }
+
+        set weight(value) {
+            if (0 >= value) throw new Error("Вы не можете столько весить");
+            this.#weight = value
+        }
+
     }
 
-    Student.prototype.present = function () {
-        const index = this.attendance.indexOf('');
-        if (index === -1) return this;
-        this.attendance.splice(index, 1, true);
-        return this;
-    }
-    Student.prototype.absent = function () {
-        const index = this.attendance.indexOf('');
-        if (index === -1) return this;
-        this.attendance.splice(index, 1, false);
-        return this;
-    }
-    Student.prototype.mark = function (grade) {
-        if (grade <= 10 && grade > 0) {
-            const index = this.assessment.indexOf('');
+    class Student extends Human {
+
+        attendance = null;
+        assessment = null;
+        cash = null;
+        static genus = 'student';
+
+        constructor(firstName, lastName, birthday, weight, cash = 0) {
+            super(firstName, lastName, birthday, weight)
+            this.cash = cash;
+            this.attendance = ['', '', '', '', '', '', '', '', '', ''];
+            this.assessment = ['', '', '', '', '', '', '', '', '', ''];
+        }
+
+        present() {
+            const index = this.attendance.indexOf('');
             if (index === -1) return this;
-            this.assessment.splice(index, 1, grade);
+            this.attendance.splice(index, 1, true);
             return this;
         }
-        return 'grade entered incorrectly';
-    }
-    Student.prototype.summary = function () {
-        let sum = this.assessment.reduce((acc, item) => {
-            return acc + +item;
-        }, 0);
-        const evaluations = this.assessment.filter(a => a !== '').length;
-        const visits = this.attendance.filter(a => a !== '').length;
-        if (!evaluations || !visits) return "data is not entered correctly";
-        const averageMark = sum / evaluations;
-        const averageVisit = this.attendance.map(item => {
-            if (item === true) return 1;
-            return 0;
-        }).reduce((a, b) => a + b) / visits;
 
-        if (averageMark > 9 && averageVisit > 0.9) return 'Ути какой молодчинка!';
-        if (averageMark > 9 || averageVisit > 0.9) return 'Норм, но можно лучше';
-        return 'Редиска!';
+        absent() {
+            const index = this.attendance.indexOf('');
+            if (index === -1) return this;
+            this.attendance.splice(index, 1, false);
+            return this;
+        }
 
-    }
+        mark(grade) {
+            if (grade <= 10 && grade > 0) {
+                const index = this.assessment.indexOf('');
+                if (index === -1) return this;
+                this.assessment.splice(index, 1, grade);
+                return this;
+            }
+            return 'grade entered incorrectly';
+        }
 
-    const student1 = new Student('Sasha', 'Solyn', 1996);
-    const student2 = new Student('Valera', 'Valerian', 2000);
-    const student3 = new Student('Anna', 'Petrova', 1991);
+        summary() {
+            let sum = this.assessment.reduce((acc, item) => {
+                return acc + +item;
+            }, 0);
+            const evaluations = this.assessment.filter(a => a !== '').length;
+            const visits = this.attendance.filter(a => a !== '').length;
+            if (!evaluations || !visits) return "data is not entered correctly";
+            const averageMark = sum / evaluations;
+            const averageVisit = this.attendance.map(item => {
+                if (item === true) return 1;
+                return 0;
+            }).reduce((a, b) => a + b) / visits;
 
-    for (let i = 0; i < 5; i++) {
-        student1.mark(10);
-        student1.present();
-    }
-    for (let i = 0; i < 5; i++) {
-        student1.mark(5);
-        student1.present();
-    }
-    console.log(student1.summary());
-
-    for (let i = 0; i < 5; i++) {
-        student2.mark(2);
-        student2.absent();
+            if (averageMark > 9 && averageVisit > 0.9) return 'Ути какой молодчинка!';
+            if (averageMark > 9 || averageVisit > 0.9) return 'Норм, но можно лучше';
+            return 'Редиска!';
+        }
     }
 
-    console.log(student2.summary());
+    const student1 = new Student('Sasha', 'Solyn', 1996, 70, 100);
 
-    for (let i = 0; i < 10; i++) {
-        student3.mark(10);
-        student3.present();
-    }
-    console.log(student3.summary());
+
+    student1.absent()
+    student1.absent()
+    student1.present()
+    student1.mark(6)
+
+    console.log(student1);
 
 }())
+
+
 
