@@ -10,45 +10,50 @@
         this.assessment = ['', '', '', '', '', '', '', '', '', ''];
     }
 
-    Student.prototype.present = function () {
-        const index = this.attendance.indexOf('');
-        if (index === -1) return this;
-        this.attendance.splice(index, 1, true);
-        return this;
-    }
-    Student.prototype.absent = function () {
-        const index = this.attendance.indexOf('');
-        if (index === -1) return this;
-        this.attendance.splice(index, 1, false);
-        return this;
-    }
-    Student.prototype.mark = function (grade) {
-        if (grade <= 10 && grade > 0) {
-            const index = this.assessment.indexOf('');
+    const objMetod = {
+        present() {
+            const index = this.attendance.indexOf('');
             if (index === -1) return this;
-            this.assessment.splice(index, 1, grade);
+            this.attendance.splice(index, 1, true);
             return this;
-        }
-        return 'grade entered incorrectly';
-    }
-    Student.prototype.summary = function () {
-        let sum = this.assessment.reduce((acc, item) => {
-            return acc + +item;
-        }, 0);
-        const evaluations = this.assessment.filter(a => a !== '').length;
-        const visits = this.attendance.filter(a => a !== '').length;
-        if (!evaluations || !visits) return "data is not entered correctly";
-        const averageMark = sum / evaluations;
-        const averageVisit = this.attendance.map(item => {
-            if (item === true) return 1;
-            return 0;
-        }).reduce((a, b) => a + b) / visits;
+        },
+        absent() {
+            const index = this.attendance.indexOf('');
+            if (index === -1) return this;
+            this.attendance.splice(index, 1, false);
+            return this;
+        },
+        mark(grade) {
+            if (grade <= 10 && grade > 0) {
+                const index = this.assessment.indexOf('');
+                if (index === -1) return this;
+                this.assessment.splice(index, 1, grade);
+                return this;
+            }
+            return 'grade entered incorrectly';
+        },
+        summary() {
+            let sum = this.assessment.reduce((acc, item) => {
+                return acc + +item;
+            }, 0);
+            const evaluations = this.assessment.filter(a => a !== '').length;
+            const visits = this.attendance.filter(a => a !== '').length;
+            if (!evaluations || !visits) return "data is not entered correctly";
+            const averageMark = sum / evaluations;
+            const averageVisit = this.attendance.map(item => {
+                if (item === true) return 1;
+                return 0;
+            }).reduce((a, b) => a + b) / visits;
 
-        if (averageMark > 9 && averageVisit > 0.9) return 'Ути какой молодчинка!';
-        if (averageMark > 9 || averageVisit > 0.9) return 'Норм, но можно лучше';
-        return 'Редиска!';
-
+            if (averageMark > 9 && averageVisit > 0.9) return 'Ути какой молодчинка!';
+            if (averageMark > 9 || averageVisit > 0.9) return 'Норм, но можно лучше';
+            return 'Редиска!';
+        },
     }
+    for (const objMetodKey in objMetod) {
+        Student.prototype[objMetodKey] = objMetod[objMetodKey]
+    }
+
 
     const student1 = new Student('Sasha', 'Solyn', 1996);
     const student2 = new Student('Valera', 'Valerian', 2000);
@@ -76,6 +81,5 @@
         student3.present();
     }
     console.log(student3.summary());
-
 }())
 
