@@ -47,7 +47,7 @@ class Controller {
             .forEach(item => {
                 if (item.value.trim().length < 5) {
                     item.classList.add('error')
-                    throw  'input to short'
+                    throw new Error('input to short');
                 }
                 item.classList.remove('error')
             })
