@@ -6,6 +6,7 @@ class Controller {
     formSelector = null;
     todoContainerSelector = null;
     todoContainer = null;
+    id = 0
 
 
     constructor(model, view, {formSelector, todoContainerSelector}) {
@@ -14,28 +15,47 @@ class Controller {
 
         this.formSelector = formSelector
         this.todoContainerSelector = todoContainerSelector
-
+        this.#model.getId(this)
         this.getForm();
         this.getTodoContainer();
 
+        this.#model.getHTMLElement(this.#view)
         this.form.addEventListener('submit', this.#handleForm);
+        this.#view.removeItems(this.#model)
     }
 
 
     #handleForm = e => {
         e.preventDefault();
         e.stopPropagation();
-
+        this.validationForm()
         const data = {};
 
         this.form.querySelectorAll('input, textarea')
             .forEach(item => {
                 data[item.name] = item.value
             })
-
+        data.id = this.id += 1;
         this.#model.saveData(data);
         this.#view.renderItem(data);
+        this.resetForm()
 
+    }
+
+    validationForm() {
+        this.form.querySelectorAll('input, textarea')
+            .forEach(item => {
+                if (item.value.trim().length < 5) {
+                    item.classList.add('error')
+                    throw  'input to short'
+                }
+                item.classList.remove('error')
+            })
+
+    }
+
+    resetForm() {
+        this.form.reset()
     }
 
 
@@ -51,12 +71,14 @@ class Controller {
         this.#view.setForm(form);
     }
 
-    #setModel (modelInstance) {
-        if(!modelInstance) throw new Error('Model is required')
+
+    #setModel(modelInstance) {
+        if (!modelInstance) throw new Error('Model is required')
         this.#model = modelInstance;
     }
-    #setView (viewInstance) {
-        if(!viewInstance) throw new Error('View is required')
+
+    #setView(viewInstance) {
+        if (!viewInstance) throw new Error('View is required')
         this.#view = viewInstance;
     }
 }
