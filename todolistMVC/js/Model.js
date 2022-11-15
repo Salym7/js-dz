@@ -21,7 +21,7 @@ class Model {
     getId(controller) {
         if (this.#getItem() && this.#getItem().length) {
             const data = this.#getItem();
-            controller.id = data[data.length - 1].id;
+            controller.id = data.at(-1).id;
         }
     }
 
