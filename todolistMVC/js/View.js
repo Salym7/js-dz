@@ -39,5 +39,13 @@ class View {
             currentItem.remove();
         })
     }
-
+    addClass(node) {
+        node.classList.add('error')
+    }
+    removeClass(node) {
+        node.classList.remove('error')
+    }
+    resetForm() {
+        this.#form.reset()
+    }
 }

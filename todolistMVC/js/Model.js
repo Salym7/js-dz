@@ -6,21 +6,21 @@ class Model {
     }
 
     saveData(data) {
-        const dbData = JSON.parse(localStorage.getItem(this.#key));
+        const dbData = this.#getItem();
 
         if (!dbData || !dbData.length) {
-            localStorage.setItem(this.#key, JSON.stringify([data]))
+            this.#setItem([data])
             return data;
         }
 
         dbData.push({...data});
-        localStorage.setItem(this.#key, JSON.stringify(dbData))
+        this.#setItem(dbData)
         return data;
     }
 
     getId(controller) {
-        if (localStorage.getItem(this.#key) && JSON.parse(localStorage.getItem(this.#key)).length) {
-            const data = JSON.parse(localStorage.getItem(this.#key));
+        if (this.#getItem() && this.#getItem().length) {
+            const data = this.#getItem();
             controller.id = data[data.length - 1].id;
         }
     }
@@ -29,7 +29,7 @@ class Model {
         document.addEventListener('DOMContentLoaded', event => {
             event.preventDefault();
             event.stopPropagation();
-            const toDo = JSON.parse(localStorage.getItem(this.#key));
+            const toDo = this.#getItem();
             if (!toDo) return 'localStorage is empty';
             toDo.map(todoItem => {
                 view.renderItem(todoItem);
@@ -38,10 +38,17 @@ class Model {
     }
 
     filteredData(currentItemId) {
-        const filtered = JSON.parse(localStorage.getItem(this.#key))
+        const filtered = this.#getItem()
             .filter(item => item.id !== currentItemId);
-        localStorage.setItem(this.#key, JSON.stringify(filtered))
+        this.#setItem(filtered)
     }
 
+    #setItem(date) {
+        localStorage.setItem(this.#key, JSON.stringify(date))
+    }
+
+    #getItem() {
+        return JSON.parse(localStorage.getItem(this.#key))
+    }
 
 }

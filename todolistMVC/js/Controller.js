@@ -28,7 +28,7 @@ class Controller {
     #handleForm = e => {
         e.preventDefault();
         e.stopPropagation();
-        this.validationForm()
+        if(!this.validationForm()) return 'input too short'
         const data = {};
 
         this.form.querySelectorAll('input, textarea')
@@ -38,25 +38,23 @@ class Controller {
         data.id = this.id += 1;
         this.#model.saveData(data);
         this.#view.renderItem(data);
-        this.resetForm()
+        this.#view.resetForm()
 
     }
 
     validationForm() {
-        this.form.querySelectorAll('input, textarea')
-            .forEach(item => {
-                if (item.value.trim().length < 5) {
-                    item.classList.add('error')
-                    throw new Error('input to short');
-                }
-                item.classList.remove('error')
-            })
-
+        const inputs = this.form.querySelectorAll('input, textarea')
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].value.trim().length < 5) {
+                this.#view.addClass( inputs[i])
+                return false;
+            }
+            this.#view.removeClass( inputs[i])
+        }
+        return true
     }
 
-    resetForm() {
-        this.form.reset()
-    }
+
 
 
     getTodoContainer() {
