@@ -1,42 +1,42 @@
 'use strict';
 
 (() => {
-    const cache = new Map();
-
-    function cacheFn(funcCallback) {
-        if (cache.has(funcCallback)) {
-            cache.set(funcCallback, funcCallback());
-            return funcCallback
+    function takeFn(fn) {
+        let cache = new Map
+        return function (a,b) {
+            if (cache.has(`${a} ${b}`)){
+                console.log("достало")
+                return cache.get(`${a} ${b}`)
+            }
+            if (cache.size >= 10) {
+                console.log("больше 10")
+                Array.from(cache.keys()).shift()
+            }
+            cache.set(`${a} ${b}`, fn(a,b))
+            console.log("сохранил")
+            console.log(cache);
         }
-        cache.set(funcCallback, funcCallback());
-        return funcCallback
     }
 
     function sum(a, b) {
-        return function sum1 (a, b){
-           return  a + b;
-        }
-
+        return a + b
     }
+    const cacheFn = takeFn(sum)
 
-    cacheFn(sum(1, 2))
-    cacheFn(sum(2, 2))
-    cacheFn(sum(3, 3))
-    cacheFn(sum(4, 2))
-    cacheFn(sum(3, 2))
-
-    // cacheFn(sum(4, 2))
-    // cacheFn(sum(4, 3))
-    // cacheFn(sum(4, 5))
-    // cacheFn(sum(4, 6))
-    // cacheFn(sum(4, 7))
-    // cacheFn(sum(4, 8))
-    // cacheFn(sum(0, 7))
-    // cacheFn(sum(1, 8))
-
-    console.log(cache);
-    console.log(cacheFn(sum(4, 2)));
-
+    cacheFn(5,5)
+    cacheFn(5,7)
+    cacheFn(1,5)
+    cacheFn(2,7)
+    cacheFn(10,5)
+    cacheFn(1,5)
+    cacheFn(2,5)
+    cacheFn(3,5)
+    cacheFn(4,5)
+    cacheFn(5,5)
+    cacheFn(6,5)
+    cacheFn(7,5)
+    cacheFn(7,8)
+    cacheFn(7,9)
 
 })();
 
