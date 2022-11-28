@@ -19,16 +19,27 @@ class Controller {
         this.getForm();
         this.getTodoContainer();
 
-        this.#model.getHTMLElement(this.#view)
+        this.getHTMLElement()
         this.form.addEventListener('submit', this.#handleForm);
         this.#view.removeItems(this.#model)
     }
 
+    getHTMLElement() {
+        document.addEventListener('DOMContentLoaded', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            const toDo = this.#model.getItem();
+            if (!toDo) return 'localStorage is empty';
+            toDo.map(todoItem => {
+                this.#view.renderItem(todoItem);
+            })
+        })
+    }
 
     #handleForm = e => {
         e.preventDefault();
         e.stopPropagation();
-        if(!this.validationForm()) return 'input too short'
+        if (!this.validationForm()) return 'input too short'
         const data = {};
 
         this.form.querySelectorAll('input, textarea')
@@ -46,15 +57,13 @@ class Controller {
         const inputs = this.form.querySelectorAll('input, textarea')
         for (let i = 0; i < inputs.length; i++) {
             if (inputs[i].value.trim().length < 5) {
-                this.#view.addClass( inputs[i])
+                this.#view.addClass(inputs[i])
                 return false;
             }
-            this.#view.removeClass( inputs[i])
+            this.#view.removeClass(inputs[i])
         }
         return true
     }
-
-
 
 
     getTodoContainer() {

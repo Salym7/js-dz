@@ -25,16 +25,8 @@ class Model {
         }
     }
 
-    getHTMLElement(view) {
-        document.addEventListener('DOMContentLoaded', event => {
-            event.preventDefault();
-            event.stopPropagation();
-            const toDo = this.#getItem();
-            if (!toDo) return 'localStorage is empty';
-            toDo.map(todoItem => {
-                view.renderItem(todoItem);
-            })
-        })
+    getItem() {
+        return this.#getItem()
     }
 
     filteredData(currentItemId) {
