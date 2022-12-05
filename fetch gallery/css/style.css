@@ -1,18 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    font: 14px sans-serif;
+}
+
+.container {
+    max-width: 1260px;
+    padding: 0 30px;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: #013b3b;
+}
+
+.header__inner {
+    text-align: center;
+
+}
+
+.header__title {
+    font-size: 40px;
+    font-weight: 700;
+    padding: 20px 0;
+}
+
+.album {
+    padding: 50px 0;
+    background-color: cadetblue;
+    min-height: 100px;
+}
+
+.album__inner {
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.photo {
+    padding: 50px 0;
+    background-color: #2f2f44;
+    min-height: 100px;
+}
+
+.photo img {
+    width: 100%;
+}
+
+.box {
+    background: #a25f95;
+    width: 19%;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
 .taskWrapper {
-    background-color: #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 14px 1px rgba(0, 0, 0, .2);
-    padding: 20px;
-    margin-bottom: 20px;
-    cursor: pointer;
+
 }
 
 .taskHeading {
-    font-size: 20px;
-    margin-bottom: 15px;
-}
-
-.taskDescription {
-    font-size: 16px;
 
 }
+
+/*.taskWrapper {*/
+/*    background-color: #ccc;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 0 14px 1px rgba(0, 0, 0, .2);*/
+/*    padding: 20px;*/
+/*    margin-bottom: 20px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.taskHeading {*/
+/*    font-size: 20px;*/
+/*    margin-bottom: 15px;*/
+/*}*/
+
+/*.taskDescription {*/
+/*    font-size: 16px;*/
+
+/*}*/
