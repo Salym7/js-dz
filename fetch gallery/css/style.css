@@ -3,7 +3,7 @@
 }
 
 body {
-
+    color: #0d0d36;
     font: 14px sans-serif;
 }
 
@@ -11,6 +11,11 @@ body {
     max-width: 1260px;
     padding: 0 30px;
     margin: 0 auto;
+}
+
+.intro__title {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .header {
@@ -58,14 +63,23 @@ body {
     border-radius: 20px;
     text-align: center;
     overflow: hidden;
+    cursor: pointer;
 }
 
-.taskWrapper {
-
+.box-album a{
+    text-decoration: none;
 }
 
-.taskHeading {
+.box-album:hover {
+    color: #013b3b;
+    transform: scale(1.05);
+    transition: .3s;
+}
 
+.intro {
+    padding: 20px 0;
+    text-align: center;
+    background: #305d48;
 }
 
 /*.taskWrapper {*/
