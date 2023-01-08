@@ -11,6 +11,7 @@ const fib = (x = 1) => {
     return b;
 }
 
+
 console.log(fib(5));
 
 
